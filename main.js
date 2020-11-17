@@ -30,6 +30,8 @@ function createMainWindow() {
     icon: "./assets/icons/icon.png",
     resizable: isDev ? true : false,
     backgroundColor: "white",
+    show: false,
+    opacity: 0.9,
     webPreferences: {
       nodeIntegration: true,
     },
