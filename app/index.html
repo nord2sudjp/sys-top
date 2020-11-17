@@ -85,6 +85,7 @@
 
       // Save Settings
       settingsForm.addEventListener("submit", (e) => {
+        e.preventDefault();
         const cpuOverload = document.getElementById("cpu-overload").value;
         const alertFrequency = document.getElementById("alert-frequency").value;
         ipcRenderer.send("settings:set", {
@@ -92,7 +93,16 @@
           alertFrequency,
         });
         console.log("ipc.settings@set", cpuOverload, alertFrequency);
+        showAlert("Settings saved");
       });
+
+      function showAlert(msg) {
+        const alert = document.getElementById("alert");
+        alert.classList.remove("hide");
+        alert.classList.add("alert");
+        alert.innerText = msg;
+        setTimeout(() => alert.classList.add("hide"), 3000);
+      }
     </script>
   </body>
 </html>
