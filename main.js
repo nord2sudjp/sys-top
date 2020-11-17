@@ -13,7 +13,7 @@ function createMainWindow() {
   mainWindow = new BrowserWindow({
     title: "SysTop",
     width: isDev ? 700 : 355,
-    height: 500,
+    height: 600,
     icon: "./assets/icons/icon.png",
     resizable: isDev ? true : false,
     backgroundColor: "white",
