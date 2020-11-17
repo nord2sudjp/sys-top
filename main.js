@@ -1,7 +1,8 @@
 const { app, BrowserWindow, Menu, ipcMain, Tray } = require("electron");
 const log = require("electron-log");
-const Store = require("./store");
+const Store = require("./Store");
 const path = require("path");
+const MainWindow = require("./MainWindow");
 
 // Set env
 process.env.NODE_ENV = "development";
@@ -23,25 +24,13 @@ const store = new Store({
 });
 
 function createMainWindow() {
-  mainWindow = new BrowserWindow({
-    title: "SysTop",
-    width: isDev ? 700 : 355,
-    height: 600,
-    icon: "./assets/icons/icon.png",
-    resizable: isDev ? true : false,
-    backgroundColor: "white",
-    show: false,
-    opacity: 0.9,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
+  mainWindow = new MainWindow("./app/index.html", isDev);
 
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
-  }
+  // if (isDev) {
+  //   mainWindow.webContents.openDevTools();
+  // }
 
-  mainWindow.loadFile("./app/index.html");
+  //mainWindow.loadFile("./app/index.html");
 }
 
 app.on("ready", () => {
