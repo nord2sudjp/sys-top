@@ -54,6 +54,13 @@ app.on("ready", () => {
 
   const icon = path.join(__dirname, "assets", "icons", "tray_icon.png");
   tray = new Tray(icon);
+  tray.on("click", () => {
+    if (mainWindow.isVisible() === true) {
+      mainWindow.hide();
+    } else {
+      mainWindow.show();
+    }
+  });
 
   mainWindow.on("ready", () => (mainWindow = null));
 });
